@@ -12,7 +12,7 @@ from time import sleep # Para pausas entre ações
 ARQUIVO_CONTRAVALES = "contravales.xlsx" # Substitua pelo endereço da planilha
 
 # Nome do aplicativo a ser focado
-NOME_APP = "Teste - WordPad"  # Substitua pelo nome da janela do aplicativo
+NOME_APP = "Teste - Bloco de Notas"  # Substitua pelo nome da janela do aplicativo
 
 # Inicializa o arquivo Excel, se não existir
 if not os.path.exists(ARQUIVO_CONTRAVALES):
