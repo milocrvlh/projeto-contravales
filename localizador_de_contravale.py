@@ -1,6 +1,6 @@
-from customtkinter import *
-from tkinter import messagebox
-import keyboard
+from customtkinter import * # Versão moderna do Tkinter
+from tkinter import messagebox # Habilitar Pop-up's 
+import keyboard # Para controle das teclas
 import pandas as pd
 import os
 from datetime import datetime
@@ -9,7 +9,7 @@ import pyautogui  # Biblioteca para automação de foco e colagem
 from time import sleep # Para pausas entre ações
 
 # Caminho do arquivo Excel
-ARQUIVO_CONTRAVALES = "contravales.xlsx"
+ARQUIVO_CONTRAVALES = "contravales.xlsx" # Substitua pelo endereço da planilha
 
 # Nome do aplicativo a ser focado
 NOME_APP = "Teste - WordPad"  # Substitua pelo nome da janela do aplicativo
@@ -31,10 +31,10 @@ def focar_em_app(nome_app):
         # Traz a janela do aplicativo para frente
         pyautogui.getWindowsWithTitle(nome_app)[0].activate()
         sleep(0.5)  # Aguarda para garantir que a janela esteja ativa
-        return True
+        return True # Para usar em lógicas que indicam que o app foi encontrado
     except IndexError:
         messagebox.showerror("Erro", f"Não foi possível localizar o aplicativo '{nome_app}'.")
-        return False
+        return False  # Para usar em lógicas que indicam que o app não foi encontrado
 
 # Função para processar um contravale específico
 def processar_contravale():
@@ -81,6 +81,7 @@ def processar_contravale():
     # Copia o número do contravale para o clipboard
     pyperclip.copy(numero)
 
+    # Tenta localizar o aplicativo para colar o número
     if focar_em_app(NOME_APP) == True:
         pyautogui.hotkey("ctrl", "v")  # Cola o número do contravale no aplicativo
         sleep(1)
@@ -88,6 +89,7 @@ def processar_contravale():
         sleep(1)
         messagebox.showinfo("Sucesso", f"Contravale {numero} baixado e colado na frente de caixa.")
 
+    # O aplicativo não foi encontrado, logo é um contravale solitário
     else:
         messagebox.showinfo("Contravale Solitário", f"Contravale {numero} baixado na planilha.")
     
