@@ -79,10 +79,6 @@ def processar_contravale():
     
     # Copia o número do contravale para o clipboard
     pyperclip.copy(numero)
-    
-    # Focar no aplicativo e colar o número
-    focar_em_app(NOME_APP)
-    pyautogui.hotkey("ctrl", "v")  # Cola o número do contravale no aplicativo
 
     if focar_em_app(NOME_APP) == True:
         pyautogui.hotkey("ctrl", "v")  # Cola o número do contravale no aplicativo
