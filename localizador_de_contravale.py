@@ -6,7 +6,7 @@ import os
 from datetime import datetime
 import pyperclip  # Biblioteca para gerenciar o clipboard
 import pyautogui  # Biblioteca para automação de foco e colagem
-import time  # Para pausas entre ações
+from time import sleep # Para pausas entre ações
 
 # Caminho do arquivo Excel
 ARQUIVO_CONTRAVALES = "contravales.xlsx"
@@ -30,9 +30,11 @@ def focar_em_app(nome_app):
     try:
         # Traz a janela do aplicativo para frente
         pyautogui.getWindowsWithTitle(nome_app)[0].activate()
-        time.sleep(0.5)  # Aguarda para garantir que a janela esteja ativa
+        sleep(0.5)  # Aguarda para garantir que a janela esteja ativa
+        return True
     except IndexError:
         messagebox.showerror("Erro", f"Não foi possível localizar o aplicativo '{nome_app}'.")
+        return False
 
 # Função para processar um contravale específico
 def processar_contravale():
@@ -46,7 +48,6 @@ def processar_contravale():
     # Caso o usuário cancele a operação
     if numero is None:
         return
-    
     # Caso o usuário digite algo que não é um número de contravale
     while not numero.isnumeric():
         messagebox.showerror("Erro", "Entrada inválida. Apenas números são permitidos.")
@@ -82,7 +83,9 @@ def processar_contravale():
 
     if focar_em_app(NOME_APP) == True:
         pyautogui.hotkey("ctrl", "v")  # Cola o número do contravale no aplicativo
+        sleep(1)
         pyautogui.press("enter")
+        sleep(1)
         messagebox.showinfo("Sucesso", f"Contravale {numero} baixado e colado na frente de caixa.")
 
     else:
