@@ -98,6 +98,7 @@ def monitorar_teclas():
     while True:
         if keyboard.is_pressed("f2"):  # Tecla 'F2' para processar contravale único
             processar_contravale()
+        
 
 # Inicializa o app
 def iniciar_app():
